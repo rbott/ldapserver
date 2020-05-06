@@ -10,18 +10,21 @@ import (
 )
 
 type client struct {
-	Numero      int
-	srv         *Server
-	rwc         net.Conn
-	br          *bufio.Reader
-	bw          *bufio.Writer
-	chanOut     chan *ldap.LDAPMessage
-	wg          sync.WaitGroup
-	closing     chan bool
-	requestList map[int]*Message
-	mutex       sync.Mutex
-	writeDone   chan bool
-	rawData     []byte
+	Numero        int
+	srv           *Server
+	rwc           net.Conn
+	br            *bufio.Reader
+	bw            *bufio.Writer
+	chanOut       chan *ldap.LDAPMessage
+	wg            sync.WaitGroup
+	closing       chan bool
+	requestList   map[int]*Message
+	mutex         sync.Mutex
+	writeDone     chan bool
+	rawData       []byte
+	Authenticated bool
+	BindUser      string
+	BindPassword  string
 }
 
 func (c *client) GetConn() net.Conn {

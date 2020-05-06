@@ -117,10 +117,11 @@ func (s *Server) serve() error {
 // client has a writer and reader buffer
 func (s *Server) newClient(rwc net.Conn) (c *client, err error) {
 	c = &client{
-		srv: s,
-		rwc: rwc,
-		br:  bufio.NewReader(rwc),
-		bw:  bufio.NewWriter(rwc),
+		srv:           s,
+		rwc:           rwc,
+		br:            bufio.NewReader(rwc),
+		bw:            bufio.NewWriter(rwc),
+		Authenticated: false,
 	}
 	return c, nil
 }
